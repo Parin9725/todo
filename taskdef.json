@@ -1,0 +1,32 @@
+{
+  "executionRoleArn": "arn:aws:iam::015072495129:role/todo-ecs-task-execution-role",
+  "containerDefinitions": [
+    {
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "cpu": 0,
+      "memoryReservation": 128,
+      "image": "015072495129.dkr.ecr.ap-south-1.amazonaws.com/test:nginxoriginal",
+      "essential": true,
+      "name": "sample-app",
+      "logConfiguration": {
+               "logDriver": "awslogs",
+               "options": {
+                   "awslogs-group": "todo-logs",
+                   "awslogs-region": "ap-south-1",
+                   "awslogs-stream-prefix": "ecs"
+               }
+           }
+    }
+  ],
+  "family": "todo-task-def",
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "networkMode": "bridge"
+}
