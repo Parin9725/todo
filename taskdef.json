@@ -1,5 +1,5 @@
 {
-  "executionRoleArn": "arn:aws:iam::015072495129:role/todo-ecs-task-execution-role",
+  "executionRoleArn": "arn:aws:iam::015072495129:role/trio-ecs-task-execution-role",
   "containerDefinitions": [
     {
       "portMappings": [
