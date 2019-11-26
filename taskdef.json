@@ -24,7 +24,7 @@
            }
     }
   ],
-  "family": "todo-task-def",
+  "family": "trio-task-def",
   "requiresCompatibilities": [
     "EC2"
   ],

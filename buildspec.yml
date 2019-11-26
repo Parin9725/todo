@@ -10,9 +10,9 @@ phases:
     - aws --version
     # login to Elastic container registry
     - eval $(aws ecr get-login --region ap-south-1 --no-include-email | sed 's|https://||')
-    - REPOSITORY_URI=015072495129.dkr.ecr.ap-south-1.amazonaws.com/laravel
+    - REPOSITORY_URI=015072495129.dkr.ecr.ap-south-1.amazonaws.com/test
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-    - IMAGE_TAG=${COMMIT_HASH:=latest}
+    - IMAGE_TAG=latest
   build:
     commands:
     - echo Build started on `date`
