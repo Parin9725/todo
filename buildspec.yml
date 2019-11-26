@@ -23,6 +23,12 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker image ls -a
+      - echo fisrt
+      - echo $REPOSITORY_URI:$IMAGE_TAG
+      - echo second
+      - echo '$REPOSITORY_URI':'$IMAGE_TAG'
+      - echo third
+      - echo "$REPOSITORY_URI":"$IMAGE_TAG"
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '{"ImageURI":"015072495129.dkr.ecr.ap-south-1.amazonaws.com/test:latest"}' > imageDetail.json
 artifacts:
