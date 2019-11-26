@@ -25,3 +25,6 @@ phases:
       - docker image ls -a
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '{"ImageURI":"image_URI"}' > imageDetail.json
+  artifacts:
+    files:
+      - imageDetail.json
