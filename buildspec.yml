@@ -11,7 +11,9 @@ phases:
     # login to Elastic container registry
     - eval $(aws ecr get-login --region ap-south-1 --no-include-email | sed 's|https://||')
     - REPOSITORY_URI=015072495129.dkr.ecr.ap-south-1.amazonaws.com/test
-    - IMAGE_TAG=latest
+    - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+    - IMAGE_TAG=${COMMIT_HASH:=latest}
+
   build:
     commands:
     - echo Build started on `date`
@@ -23,14 +25,10 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker image ls -a
-      - echo fisrt
-      - echo $REPOSITORY_URI:$IMAGE_TAG
-      - echo second
-      - echo '$REPOSITORY_URI':'$IMAGE_TAG'
-      - echo third
-      - echo "$REPOSITORY_URI":"$IMAGE_TAG"
+      - echo URI
+      - printf  '{"ImageURI":"'$REPOSITORY_URI':'$IMAGE_TAG'"}'
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '{"ImageURI":"015072495129.dkr.ecr.ap-south-1.amazonaws.com/test:latest"}' > imageDetail.json
+      - printf '{"ImageURI":"'$REPOSITORY_URI':'$IMAGE_TAG'"}' > imageDetail.json
 artifacts:
   files:
     - imageDetail.json
